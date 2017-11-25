@@ -44,8 +44,6 @@ public class AirCraftDisPlayView extends View {
     private Paint mPaint;
     private Paint mTextPaint;
     private Paint mScorePaint;
-    private float mTouchX;
-    private float mTouchY;
     private PlayerAirCraft mPlayerAircraft = null;
     private int mFrameIndex;
     private List<BaseAirCraft> mAirScraftsBuffer = new ArrayList<>();
@@ -59,8 +57,6 @@ public class AirCraftDisPlayView extends View {
     public static final int STATUS_GAME_PAUSED = 2;//暂停
     public static final int STATUS_GAME_OVER = 3;//结束
     private int mGameStatus = STATUS_GAME_STARTED;
-    private float mTextfontSize;
-    private float mScorefontSize;
     private LevelServer mLevelServer;
     private int mCreateCount;
     public final static int DIALOG_TYPE_NATIVE = 1;
@@ -85,7 +81,6 @@ public class AirCraftDisPlayView extends View {
 
     private int mDialogType = DIALOG_TYPE_CANVAS;
     private long mTouchDownTime;
-    private long mTouchUpTime;
     private AirCraftDialogBuilder mDialogBuilder;
     private Bitmap mPauseBitmap;
 
@@ -124,11 +119,11 @@ public class AirCraftDisPlayView extends View {
         mPaint.setStyle(Paint.Style.FILL);
         mTextPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG | Paint.FAKE_BOLD_TEXT_FLAG);
         mTextPaint.setColor(0x88000000);
-        mTextfontSize = DisPlayUtils.dip2px(getContext(), 12f);
+        float mTextfontSize = DisPlayUtils.dip2px(getContext(), 12f);
         mTextPaint.setTextSize(mTextfontSize);
         mScorePaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FAKE_BOLD_TEXT_FLAG);
         mScorePaint.setColor(0x88000000);
-        mScorefontSize = DisPlayUtils.dip2px(getContext(), 16f);
+        float mScorefontSize = DisPlayUtils.dip2px(getContext(), 16f);
         mScorePaint.setTextSize(mScorefontSize);
         mPauseBitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.icon_pause);
     }
@@ -136,8 +131,8 @@ public class AirCraftDisPlayView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        mTouchX = event.getX();
-        mTouchY = event.getY();
+        float mTouchX = event.getX();
+        float mTouchY = event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 //触点按下
@@ -156,7 +151,7 @@ public class AirCraftDisPlayView extends View {
                 break;
             case MotionEvent.ACTION_UP:
                 //触点弹起
-                mTouchUpTime = System.currentTimeMillis();
+                long mTouchUpTime = System.currentTimeMillis();
                 //计算触点按下到触点弹起之间的时间差
                 long downUpDurationTime = mTouchUpTime - mTouchDownTime;
                 if (downUpDurationTime < CLICK_DURATION_TIME) {
