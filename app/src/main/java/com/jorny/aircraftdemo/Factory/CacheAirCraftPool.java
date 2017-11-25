@@ -11,8 +11,9 @@ public class CacheAirCraftPool {
     private static CacheAirCraftPool instance;//缓存池唯一实例
     private Queue<BaseAirCraft> mCacheItems;//缓存Queue
     private int mMaxSize;
+
     public CacheAirCraftPool(int maxSize) {
-        this.mMaxSize=maxSize;
+        this.mMaxSize = maxSize;
         mCacheItems = new LinkedList<>();
     }
 
@@ -37,6 +38,7 @@ public class CacheAirCraftPool {
         }
         return cacheItem;
     }
+
     /**
      * 存放缓存信息
      */
@@ -54,10 +56,10 @@ public class CacheAirCraftPool {
             }
         }
     }
+
     /**
      * 获取缓存数据的数量
      *
-     * @return
      */
     public int getSize() {
         return mCacheItems.size();

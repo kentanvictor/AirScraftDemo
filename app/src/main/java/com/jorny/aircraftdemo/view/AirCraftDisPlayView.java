@@ -66,7 +66,7 @@ public class AirCraftDisPlayView extends View {
     public final static int DIALOG_TYPE_NATIVE = 1;
     public final static int DIALOG_TYPE_CANVAS = 2;
     private static final int CLICK_DURATION_TIME = 1000;
-    private boolean isBulleInfinite=false;
+    private boolean isBulleInfinite = false;
 
 
     public GameStatusChangeListener getGameStatusChangeListener() {
@@ -78,6 +78,7 @@ public class AirCraftDisPlayView extends View {
     }
 
     private GameStatusChangeListener mGameStatusChangeListener;
+
     public void setDialogType(int mDialogType) {
         this.mDialogType = mDialogType;
     }
@@ -201,21 +202,21 @@ public class AirCraftDisPlayView extends View {
     }
 
     //绘制暂停状态的游戏
-    private void gamePause( ) {
+    private void gamePause() {
         changeGameStatus(STATUS_GAME_PAUSED);
     }
 
     private void showGameOverOrPauseDialog(@Nullable Canvas canvas) {
-        String message = String.format("您闯到了第%d关，获得了%d分", mLevelServer.getLevel()+1,mScore);
-        final boolean isGameOver= mGameStatus ==STATUS_GAME_OVER;
+        String message = String.format("您闯到了第%d关，获得了%d分", mLevelServer.getLevel() + 1, mScore);
+        final boolean isGameOver = mGameStatus == STATUS_GAME_OVER;
         String positiveBtnText;
         String title;
-        if(isGameOver){
-            positiveBtnText="再来一局";
-            title="游戏结束";
-        }else {
-            positiveBtnText="继续";
-            title="游戏暂停";
+        if (isGameOver) {
+            positiveBtnText = "再来一局";
+            title = "游戏结束";
+        } else {
+            positiveBtnText = "继续";
+            title = "游戏暂停";
         }
         AirCraftDialogBuilder.PostiveClickListener positListener = new AirCraftDialogBuilder.PostiveClickListener() {
             @Override
@@ -293,6 +294,7 @@ public class AirCraftDisPlayView extends View {
         drawScoreAndLevel(canvas);
         drawPauseButton(canvas);
     }
+
     private void drawPauseButton(Canvas canvas) {
         RectF pauseBitmapDstRecF = getPauseBitmapDstRecF();
         float pauseLeft = pauseBitmapDstRecF.left;
@@ -302,14 +304,12 @@ public class AirCraftDisPlayView extends View {
 
     /***
      * 是否点击了暂停按钮
-     * @param x
-     * @param y
-     * @return
      */
     private boolean isClickPause(float x, float y) {
         RectF pauseRecF = getPauseBitmapDstRecF();
         return pauseRecF.contains(x, y);
     }
+
     private RectF getPauseBitmapDstRecF() {
         RectF recF = new RectF();
         recF.left = 15 * mDensity;
@@ -318,6 +318,7 @@ public class AirCraftDisPlayView extends View {
         recF.bottom = recF.top + mPauseBitmap.getHeight();
         return recF;
     }
+
     private void drawFPS(Canvas canvas) {
         //60帧取样一次FPS
         if (mPreDrawTime != 0L && mFrameIndex % 60 == 0) {
@@ -341,7 +342,7 @@ public class AirCraftDisPlayView extends View {
     }
 
     private void resetAllResources() {
-        LevelServer.getInstance() .reset();
+        LevelServer.getInstance().reset();
         mFrameIndex = 0;
         mScore = 0;
         //销毁战斗机
@@ -361,6 +362,7 @@ public class AirCraftDisPlayView extends View {
         resetAllResources();
         startByReady();
     }
+
     private void resume() {
         //将游戏设置为运行状态
 
@@ -513,11 +515,10 @@ public class AirCraftDisPlayView extends View {
     }
 
     public void setBulleInfinite(boolean isBulleInfinite) {
-       this.isBulleInfinite=isBulleInfinite;
+        this.isBulleInfinite = isBulleInfinite;
     }
 
-    public static  interface GameStatusChangeListener{
+    public static interface GameStatusChangeListener {
         void onGameStatusChange(int status);
     }
-
 }

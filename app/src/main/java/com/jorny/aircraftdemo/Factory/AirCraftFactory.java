@@ -83,6 +83,7 @@ public class AirCraftFactory {
         }
         return sAirCraftFactory;
     }
+
     public BaseAirCraft getAirCraft(String tag) {
         BaseAirCraft airCraft = null;
         Bitmap bitmap;
