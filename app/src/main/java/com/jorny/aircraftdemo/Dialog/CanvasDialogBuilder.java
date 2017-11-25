@@ -94,9 +94,6 @@ public class CanvasDialogBuilder implements AirCraftDialogBuilder {
 
     /**
      * 是否点击了按钮
-     * @param x
-     * @param y
-     * @return
      */
     public boolean isClickPostiveButton(float x, float y) {
         return mPostiveButtonRect.contains((int) x, (int) y);

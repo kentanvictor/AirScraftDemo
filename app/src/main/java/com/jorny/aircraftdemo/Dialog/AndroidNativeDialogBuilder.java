@@ -9,17 +9,17 @@ public class AndroidNativeDialogBuilder implements AirCraftDialogBuilder {
 
     @Override
     public void ShowAlertDialog(Context context, Canvas canvas, final AirCraftDialogBuilderInfo dialogDisPlayVo) {
-        AlertDialog.Builder buider = new AlertDialog.Builder(context);
-        buider.setTitle(dialogDisPlayVo.getTitle());
-        buider.setMessage(dialogDisPlayVo.getMessage());
-        buider.setCancelable(false);
-        buider.setPositiveButton(dialogDisPlayVo.getPostiveText(), new DialogInterface.OnClickListener() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(dialogDisPlayVo.getTitle());
+        builder.setMessage(dialogDisPlayVo.getMessage());
+        builder.setCancelable(false);
+        builder.setPositiveButton(dialogDisPlayVo.getPostiveText(), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogDisPlayVo.getListener().onClick();
             }
         });
-        buider.show();
+        builder.show();
     }
 
     @Override
